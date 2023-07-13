@@ -24,4 +24,18 @@ export class UserPrismaRepository implements IUserRepository {
     const user = await this.prisma.user.create({ data });
     return user;
   }
+
+  async findById(id: string): Promise<CreatedUserDTO> {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!user) {
+      return null;
+    }
+
+    return user;
+  }
 }
