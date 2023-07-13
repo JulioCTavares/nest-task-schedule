@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { UserController } from './user.controller';
-import { CreateUserUseCase } from './useCases';
+import { CreateUserUseCase, ProfileUserUseCase } from './useCases';
 import { PrismaService } from '@/infra/prisma';
 import { IUserRepository } from './repositories';
 import { UserPrismaRepository } from './repositories/prisma';
@@ -11,6 +11,7 @@ import { UserPrismaRepository } from './repositories/prisma';
   providers: [
     CreateUserUseCase,
     PrismaService,
+    ProfileUserUseCase,
     {
       provide: IUserRepository,
       useClass: UserPrismaRepository,
