@@ -27,6 +27,7 @@ export class UserController {
   @Get('/profile')
   @UseGuards(AuthGuard)
   async profile(@Request() req) {
-    return this.profileUserUsecase.execute(req.user.sub);
+    const user = await this.profileUserUsecase.execute(req.user.sub);
+    return user;
   }
 }

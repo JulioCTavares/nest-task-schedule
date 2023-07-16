@@ -9,6 +9,8 @@ export const CreateUserSchema = z.object({
 
 export class CreateUserSchemaDTO extends createZodDto(CreateUserSchema) { }
 
-export const CreateUserResponseDTO = CreateUserSchema.omit({ password: true });
+export const CreateUserResponseDTO = CreateUserSchema.omit({
+  password: true,
+});
 
 export type CreateUserResponseDTO = z.infer<typeof CreateUserResponseDTO>;
