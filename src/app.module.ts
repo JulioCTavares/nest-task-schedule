@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from '@/modules/auth';
 import { APP_PIPE } from '@nestjs/core';
 import { ZodValidationPipe } from 'nestjs-zod';
+import { TaskUserModule } from '@/modules/tasks';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { ZodValidationPipe } from 'nestjs-zod';
       isGlobal: true,
     }),
     AuthModule,
+    TaskUserModule,
   ],
   controllers: [],
   providers: [
