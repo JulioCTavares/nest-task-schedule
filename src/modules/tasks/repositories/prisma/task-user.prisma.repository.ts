@@ -13,7 +13,7 @@ export class TaskUserPrismaRepository implements ITaskUserRepository {
   async save(
     data: CreateTaskUserRequestDTO,
   ): Promise<CreateTaskUserResponseDTO> {
-    return await this.prisma.taskUsers.create({
+    return this.prisma.taskUsers.create({
       data: {
         task: {
           create: {
