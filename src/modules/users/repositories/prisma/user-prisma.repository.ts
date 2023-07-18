@@ -38,4 +38,15 @@ export class UserPrismaRepository implements IUserRepository {
 
     return user;
   }
+
+  async updateAvatar(userId: string, path: string): Promise<void> {
+    await this.prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        avatarUrl: path,
+      },
+    });
+  }
 }
