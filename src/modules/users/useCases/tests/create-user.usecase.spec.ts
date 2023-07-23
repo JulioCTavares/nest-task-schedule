@@ -3,8 +3,8 @@ import { Test } from '@nestjs/testing';
 import { CreateUserDTO } from '@/modules/users/dtos';
 import { CreateUserUseCase } from '../create-user.usecase';
 import { IUserRepository } from '@/modules/users/repositories';
-import { randomUUID } from 'node:crypto';
 import { faker } from '@faker-js/faker';
+import { UserInMemoryRepository } from '../../repositories/in-memory';
 
 describe('CreateUserUseCase', () => {
   let createUserUseCase: CreateUserUseCase;
@@ -16,10 +16,7 @@ describe('CreateUserUseCase', () => {
         CreateUserUseCase,
         {
           provide: IUserRepository,
-          useValue: {
-            findByEmail: jest.fn(),
-            save: jest.fn(),
-          },
+          useClass: UserInMemoryRepository,
         },
       ],
     }).compile();
@@ -39,11 +36,7 @@ describe('CreateUserUseCase', () => {
     jest.spyOn(userRepository, 'findByEmail').mockResolvedValue(null);
 
     // Simular o save retornando o usuário salvo
-    const savedUser = {
-      ...data,
-      id: randomUUID(),
-      password: 'hashedPassword',
-    };
+    const savedUser = await userRepository.save(data);
     jest.spyOn(userRepository, 'save').mockResolvedValue(savedUser);
 
     const user = await createUserUseCase.execute(data);
@@ -59,16 +52,16 @@ describe('CreateUserUseCase', () => {
 
   it('deve lançar uma exceção BadRequest ao tentar criar um usuário com email existente', async () => {
     const data: CreateUserDTO = {
-      name: 'John Doe',
-      email: 'johndoe@example.com',
-      password: 'password123',
+      username: faker.person.fullName(),
+      email: faker.internet.email(),
+      password: faker.internet.password(),
     };
 
     // Simular findByEmail retornando um usuário, indicando que o email já existe
-    jest.spyOn(userRepository, 'findByEmail').mockResolvedValue({
-      id: '123',
-      email: data.email,
-    });
+    const savedUser = await userRepository.save(data);
+    jest.spyOn(userRepository, 'findByEmail').mockResolvedValue(savedUser);
+
+    userRepository.save = jest.fn();
 
     await expect(createUserUseCase.execute(data)).rejects.toThrow(
       BadRequestException,
