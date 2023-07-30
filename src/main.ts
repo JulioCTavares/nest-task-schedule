@@ -5,7 +5,7 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { AppModule } from './app.module';
-import { PrismaClientExceptionFilter } from '@/infra/prisma/exceptions';
+import { PrismaClientExceptionFilter } from '@/src/infra/prisma/exceptions';
 import fmp from '@fastify/multipart';
 import cors from '@fastify/cors';
 

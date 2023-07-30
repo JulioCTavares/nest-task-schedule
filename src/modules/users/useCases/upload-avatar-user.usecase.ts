@@ -1,4 +1,4 @@
-import { IStorage } from '@/infra/providers/storage';
+import { IStorage } from '@/src/infra/providers/storage';
 import { Injectable } from '@nestjs/common';
 import { IUserRepository } from '../repositories';
 import { AvatarDTO } from '../dtos';

@@ -1,4 +1,4 @@
-import { PrismaService } from '@/infra/prisma';
+import { PrismaService } from '@/src/infra/prisma';
 import {
   CreateTaskUserRequestDTO,
   CreateTaskUserResponseDTO,

@@ -5,10 +5,10 @@ import {
   ProfileUserUseCase,
   UploadAvatarUserUseCase,
 } from './useCases';
-import { PrismaService } from '@/infra/prisma';
+import { PrismaService } from '@/src/infra/prisma';
 import { IUserRepository } from './repositories';
 import { UserPrismaRepository } from './repositories/prisma';
-import { IStorage, SupabaseStorage } from '@/infra/providers/storage';
+import { IStorage, SupabaseStorage } from '@/src/infra/providers/storage';
 
 @Module({
   imports: [],

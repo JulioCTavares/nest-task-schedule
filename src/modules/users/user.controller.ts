@@ -13,7 +13,7 @@ import {
   ProfileUserUseCase,
   UploadAvatarUserUseCase,
 } from './useCases';
-import { AuthGuard } from '@/modules/auth/guards';
+import { AuthGuard } from '@/src/modules/auth/guards';
 import { CreateUserSchemaDTO, CreateUserResponseDTO } from './schemas';
 import { FileDTO } from './dtos';
 
