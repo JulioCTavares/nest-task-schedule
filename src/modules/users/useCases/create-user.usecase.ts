@@ -1,7 +1,7 @@
-import { CreateUserDTO } from '@/modules/users/dtos';
+import { CreateUserDTO } from '@/src/modules/users/dtos';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { hash } from 'bcrypt';
-import { IUserRepository } from '@/modules/users/repositories';
+import { IUserRepository } from '@/src/modules/users/repositories';
 import { randomUUID } from 'node:crypto';
 
 @Injectable()

@@ -1,5 +1,5 @@
-import { SignInDTO } from '@/modules/auth/dtos';
-import { IUserRepository } from '@/modules/users/repositories';
+import { SignInDTO } from '@/src/modules/auth/dtos';
+import { IUserRepository } from '@/src/modules/users/repositories';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
